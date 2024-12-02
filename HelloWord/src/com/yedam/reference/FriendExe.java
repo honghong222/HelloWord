@@ -58,4 +58,11 @@ public class FriendExe {
 		
 		
 	}
-}
+}boolean isExists = false;
+System.out.print("친구이름출력");
+name = scn.nextLine();
+int idx = -1;
+for(int i = 0; i<storage; i++);
+
+if(isExists) {
+	

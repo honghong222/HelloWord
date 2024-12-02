@@ -15,8 +15,9 @@ public class FriendManager {
 //		storage[0].friendName = "홍길동";
 //		storage[0].friendPhone = "010-1111-1111";
 //		storage[0].friendBirth = "1999-01-01";
+		// C(reate)R(ead)U(pdate)D(
 		while (run) {
-			System.out.println("1.친구정보 추가 2. 목록 3.조회(숙제) 4수정(연락처) 9.종료");
+			System.out.println("1.친구정보 추가 2. 목록 3.조회(숙제) 4수정(연락처) 5.삭제 9.종료");
 			System.out.print("선택>>");
 			//1.친구정보 추가
 			int menu = Integer.parseInt(scn.nextLine());
@@ -52,16 +53,44 @@ public class FriendManager {
 			case 3://3.조회(숙제)
 				
 			case 4://4.수정(연락처)
-				
+				System.out.print("친구이름출력");
+				name = scn.nextLine();
+				System.out.print("연락처");
+				phone = scn.nextLine();
+				//10개중 6개 저장 4개 null
+				for(int i = 0; i<storage.length; i++) {
+					if(storage[i] != null) { //null이 아닌 요소 대상
+						if(storage[i].friendName.equals(name)) {
+							storage[i].friendPhone = phone;
+							break;
+						}
+					
+					}else if(storage[i] == null) {
+							System.out.println("없습니다");
+							}
+				}
+				break;//switch 종료
+			case 5:
+				System.out.print("친구이름입력");
+				name = scn.nextLine();
+				for (int i = 0; i < storage.length; i++) {
+					if(storage[i] != null) {
+						if(storage[i].friendName.equals(name)) {
+							storage[i] = null;
+							break;
+						}
+					}
+				}
 			case 9:
 				run = false;
-				break; // switch 종료
+				break; 
 			default:
 				System.out.println("메뉴를 다시 선택하세요");
-			}// end of switch
+			
 
-		} // end of while
+		}
 		System.out.println("프로그램 끝");
+		}
+		}
+	}
 
-	}// end of main()
-}// end of class
