@@ -9,7 +9,7 @@ public class MainExe {
 		
 		boolean run = true;
 		
-		MemberExe mexe = new MemberExe(); //인스턴스
+		//MemberExe mexe = new MemberExe(); //인스턴스 //정적 매소드 사용시 선언하지 않아도 바로 불러 올 수 있음
 		
 		while(run) {
 			System.out.println("1.회원등록 2.목록 3.게시판 9.종료");
@@ -27,7 +27,7 @@ public class MainExe {
 				System.out.print("회원연락처>>");
 				String phone = scn.nextLine();
 				
-				boolean result = mexe.addMember(new Member(id,pw,name,phone));
+				boolean result = MemberExe.addMember(new Member(id,pw,name,phone));//(정적으로 바로 불러옴)
 				if(result) {
 					System.out.println("정상 등록되었습니다");
 				}else {
@@ -35,7 +35,7 @@ public class MainExe {
 				}
 				break;
 			case 2:
-				Member[] list = mexe.memberList();
+				Member[] list = MemberExe.memberList();
 					for(Member member : list) {
 						if(member != null) {
 							System.out.println(member.showInfo());
@@ -48,7 +48,7 @@ public class MainExe {
 				 id = scn.nextLine();
 				System.out.print("회원비밀번호>>");
 				 pw = scn.nextLine();
-				 if(mexe.login(id,pw)) {
+				 if(MemberExe.login(id,pw)) {
 					boardMethod(id); //로그인한 사용자의 아이디를 활용
 				 }else {
 					 System.out.println("아디 비번 확인");

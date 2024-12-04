@@ -3,7 +3,8 @@ package com.yedam.board;
 //회원가입,회원정보수정,목록
 //
 public class MemberExe {
-	private Member[] storage; //필드
+	//인스턴스 vs 정적(static)필드, 정적메소드 선언
+	private static Member[] storage; //필드
 	
 	
 	public MemberExe() {
@@ -15,7 +16,7 @@ public class MemberExe {
 	}
 	//메소드
 	//1.emdfhr
-	public boolean addMember(Member member) {
+	public static boolean addMember(Member member) {
 		for(int i = 0; i<storage.length; i++) {
 			if(storage[i] == null) {
 				storage[i] = member;
@@ -25,11 +26,11 @@ public class MemberExe {
 		return false; //등록 fail.
 	}
 	//2.목록
-	public Member[] memberList() {
+	public static Member[] memberList() {
 		return storage;
 	}
 	// 3.아이디 비밀번호 존재여부 반환
-		public boolean login(String id, String pw) {
+		public static boolean login(String id, String pw) {
 			for (int i = 0; i < storage.length; i++) {
 				if (storage[i] != null) {
 					if (storage[i].getMemberId().equals(id) && storage[i].getPassword().equals(pw)) {
