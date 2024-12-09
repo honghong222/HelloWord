@@ -1,15 +1,16 @@
 package com.yedam.jdbc.student;
+/*
+ * db connect, db close
+ * DAO 상속
+ */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
-//
-// db connect, db close
-//DAO 상속.
 public class DAO {
-	// 쿼리실행을 위한 필드 선언
 	Connection conn = null;
 	PreparedStatement psmt;
 	ResultSet rs;
@@ -23,14 +24,13 @@ public class DAO {
 				psmt.close();
 			if (rs != null)
 				rs.close();
-		} catch (Exception e) {
-			System.out.println("연결 중 에러.");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	// 연결
 	public Connection getConn() {
-
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver"); // 드라이버 로드.
 			// Connection 객체.
