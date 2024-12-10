@@ -37,12 +37,12 @@ public class modifyBoardControl implements Control {
 				board.setTitle(content);
 				board.setTitle(writer);
 				
-				if(bdao.insertBoard(board)) {
-					resp.sendRedirect("boardList.do"); //페이지 재지정
-				}else{
-					//등록화면으로 이동
-					req.getRequestDispatcher("html/modifyForm.jsp").forward(req, resp);
-				}
+//				if(bdao.insertBoard(board)) {
+//					resp.sendRedirect("boardList.do"); //페이지 재지정
+//				}else{
+//					//등록화면으로 이동
+//					req.getRequestDispatcher("html/modifyForm.jsp").forward(req, resp);
+//				}
 			}
 	}
 
