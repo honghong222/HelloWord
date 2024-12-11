@@ -19,7 +19,7 @@
 	
 	<%
 	BoardDAO bdao = new BoardDAO();
-	List<BoardVO> list = bdao.boardList();
+	List<BoardVO> list = bdao.boardList(1);
 	
 	for (BoardVO board : list) {
 	%>

@@ -1,23 +1,28 @@
-package com.yedam;
+package com.yedam.Control;
 
 import java.io.IOException;
 
 import com.yedam.common.Control;
+import com.yedam.jdbc.BoardDAO;
 import com.yedam.vo.BoardVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class modifyFormControl implements Control {
+public class ModifyFormControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 게시글 번호에 대한 조회 결과를 html/modifyForm.jsp 출력
 		//수정항목은 제목,내용으로 제한.
-		BoardVO board = new BoardVO();
-		board.setBoardNo(5);
-		req.setAttribute("board", resp);
+		String bno = req.getParameter("board_no");
+		BoardDAO bdao = new BoardDAO();
+		BoardVO bvo = bdao.selectBoard(Integer.parseInt(bno));
+		
+		//조회한 board 정보를 jsp페이지에 전달
+		req.setAttribute("board", bvo);
+		//포워딩 페이지 전달
 		req.getRequestDispatcher("html/modifyForm.jsp").forward(req, resp);
 	}
 
