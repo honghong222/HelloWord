@@ -1,26 +1,33 @@
 <%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <jsp:include page="../includes/header.jsp"></jsp:include>
-	<h3>글상세화면(board.jsp)</h3>
+	<h3>글수정화면(modifyForm.jsp)</h3>
 	<%
 	BoardVO bvo = (BoardVO) request.getAttribute("board");
+	//파라미터 추가작업. 2024 12.12
+	String sc = (String) request.getAttribute("searchConditon");
+	String kw = (String) request.getAttribute("keyword");
+	String pg = (String) request.getAttribute("page");
 	%>
-	<form action="modifyForm.do">
+	<form action="modifyBoard.do">
 	<input type="hidden" name="board_no" value="<%=bvo.getBoardNo() %>">
+	//파라미터 추가작업. 2024 12.12
+	<input type="hidden" name="searchConditon" value="<%=sc %>">
+	<input type="hidden" name="keyword" value="<%=kw %>">
+	<input type="hidden" name="page" value="<%=pg %>">
 	<table class="table">
 	<tr>
 		<th>글번호</th><td><%=bvo.getBoardNo() %></td>
 		<th>작성자</th><td><%=bvo.getWriter() %></td>
 	</tr>
 	<tr>
-		<th>제목</th><td><%=bvo.getTitle() %></td>
+		<th>제목</th><td colspan="3"><input type="text" name="title" value="<%=bvo.getTitle() %>"></td>
 	</tr>
 	<tr>
 		<th>내용</th>
 		<td colspan="3">
-		<textarea rows="5" readonly class="form-control"><%=bvo.getContent() %></textarea>
+		<textarea rows="5" class="form-control" name="content"><%=bvo.getContent() %></textarea>
 		</td>
 	</tr>
 	<tr>
@@ -29,22 +36,10 @@
 	</tr>
 	<tr>
 	<td colspan="4" align="center">
-	
-
-	<%
-	String logId = (String) session.getAttribute("logId");
-	if(bvo.getWriter().equals(logId)) {
-	%>
-	 <input type="submit" class="btn btn-warning" value="수정화면" >
-	 <% 
-	}else{
-	 %>
-	 <input type="submit" class="btn btn-warning" value="수정화면" disabled>
-	 <%
-	}
-	 %>
+	 <input type="submit" class="btn btn-warning" value="저장">
 	 </td>
 	 </tr>
 	</table>
 	</form>
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+    

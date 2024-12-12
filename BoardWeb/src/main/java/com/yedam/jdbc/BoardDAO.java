@@ -139,7 +139,7 @@ public class BoardDAO extends DAO {
 		}
 		return false;
 	}
-
+	//목록 parameter(매개변수)
 	public List<BoardVO> boardList(SearchDTO search) {
 		getConn();
 		String sql = "select b.* "//
@@ -147,15 +147,15 @@ public class BoardDAO extends DAO {
 				+ "     from( select * "//
 				+ "           from tbl_board ";//
 		//Title 검색조건 -> title 컬럼에서 값을 조회
-		if(search.getSearchCondition() == null && search.getKeyword() == null) {
+		if(search.getSearchCondition() != null && search.getKeyword() != null) {
 			
 		
 		if(search.getSearchCondition().equals("T")) {
-			sql +="         there title like '%'||?||'%'";
+			sql +="         where title like '%'||?||'%'";
 		}else if(search.getSearchCondition().equals("W")) {
-			sql +="         there title like '%'||?||'%'";
+			sql +="         where writer like '%'||?||'%'";
 		}else if(search.getSearchCondition().equals("TW")) {
-			sql +="         there title like '%'||?||'%' or writer like '%'||?||'%'";
+			sql +="         where title like '%'||?||'%' or writer like '%'||?||'%'";
 		}
 		}
 		sql+= "           order by board_no desc) a)b "//
@@ -166,7 +166,7 @@ public class BoardDAO extends DAO {
 		int cnt =1;
 		try {
 			psmt = conn.prepareStatement(sql);
-			if(search.getSearchCondition() == null && search.getKeyword() == null) {
+			if(search.getSearchCondition() != null && search.getKeyword() != null) {
 				
 			
 			if(search.getSearchCondition().equals("T")) {

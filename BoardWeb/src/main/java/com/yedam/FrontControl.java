@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.yedam.Control.BoardControl;
 import com.yedam.Control.BoardFormControl;
 import com.yedam.Control.BoardListControl;
@@ -13,12 +19,6 @@ import com.yedam.Control.LogoutControl;
 import com.yedam.Control.ModifyBoardControl;
 import com.yedam.Control.ModifyFormControl;
 import com.yedam.common.Control;
-
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 //
 //url pattern 에서  ??.do -> FrontControl울 실행
