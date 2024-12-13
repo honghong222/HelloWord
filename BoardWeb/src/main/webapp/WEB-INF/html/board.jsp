@@ -24,6 +24,8 @@
 	</tr>
 	<tr>
 		<th>제목</th><td>${board.title}</td>
+		<th>이미지</th>
+		<td><img src="images/${board.img }" width="100px"></td>
 	</tr>
 	<tr>
 		<th>내용</th>
@@ -57,4 +59,40 @@
 	 </tr>
 	</table>
 	</form>
+	<!-- 댓글시작 -->
+	<style>
+	 div.reply .content ul{
+	 	list-style-type: none;
+	 }
+	  div.reply .content span{
+	 	display: inline-block;
+	 }
+	</style>
+	<div class="reply">
+	<div class="header">
+	댓글내용:<input type="text" class="col-sm-8" id="reply">
+	<button id="addBtn" class="col-sm-2 btn btn primary">댓글등록</button>
+	</div><!-- 댓글등록 -->
+	<div class="content">
+	<ul class="title">
+	<li>
+	<span class="col-sm-2">글번호</span>
+	<span class="col-sm-5">내용</span>
+	<span class="col-sm-2">작성자</span>
+	<span class="col-sm-2">삭제</span>
+	</li>
+	
+	</ul>
+	
+	</div><!-- 댓글목록 -->
+	<ul class="list">
+	<div class="footer"></div><!-- 댓글paging -->
+	</div></ul>
+	<!-- 댓글끝 -->
+	<script>
+	let bno ="${board.boardNo}"; //원본글번호
+	let logId = "${logId}"; //작성자
+	</script>
+	<script src="js/board.js">
+	</script>
 <jsp:include page="../includes/footer.jsp"></jsp:include>

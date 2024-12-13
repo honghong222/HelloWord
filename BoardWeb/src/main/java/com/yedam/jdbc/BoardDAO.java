@@ -104,7 +104,7 @@ public class BoardDAO extends DAO {
 				brd.setWriter(rs.getString("writer"));
 				brd.setViewCnt(rs.getInt("view_cnt"));
 				brd.setCreationDate(rs.getDate("creation_date"));
-				brd.setUpdateDate(rs.getDate("update_date"));
+				brd.setImg(rs.getString("img"));
 
 				return brd;// ArrayList에 추가
 			}
@@ -120,14 +120,15 @@ public class BoardDAO extends DAO {
 	// BoardVO 파라미터 -> 등록
 	public boolean insertBoard(BoardVO board) {
 		getConn();
-		String sql = "insert into tbl_board" + "(board_no, title, content, writer)"
-				+ "values(board_seq.nextval, ?, ?, ?)";
+		String sql = "insert into tbl_board" + "(board_no, title, content, writer, img)"
+				+ "values(board_seq.nextval, ?, ?, ?, ?)";
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, board.getTitle());
 			psmt.setString(2, board.getContent());
 			psmt.setString(3, board.getWriter());
+			psmt.setString(4, board.getImg());
 			int r = psmt.executeUpdate();
 			if (r > 0) {
 				return true;
