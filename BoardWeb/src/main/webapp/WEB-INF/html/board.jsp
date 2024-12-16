@@ -84,10 +84,30 @@
 	
 	</ul>
 	
+	
+	<ul class="list"></ul>
 	</div><!-- 댓글목록 -->
-	<ul class="list">
-	<div class="footer"></div><!-- 댓글paging -->
-	</div></ul>
+	<div class="footer">
+	
+	<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+	</div><!-- 댓글paging -->
+	</div>
 	<!-- 댓글끝 -->
 	<script>
 	let bno ="${board.boardNo}"; //원본글번호
