@@ -31,13 +31,76 @@ public class ReplyDAO extends DAO{
 			+ "          from tbl_reply"//
 			+ "          group by board_no";//
 	
+	
+	//일정삭제
+	public boolean deleteEvent(String title,String start_date,String end_date) {
+		getConn();
+		String sql = "DELETE FROM tbl_events"
+				+ "   WHERE       title = ?"
+				+ "     and       start_date = ?"
+				+ "     and       end_date = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, title);
+			psmt.setString(2, start_date);
+			psmt.setString(3, end_date);
+			
+			int r = psmt.executeUpdate();
+			if(r > 0) {		
+					return true;}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disConnect();
+		}
+		return false;
+	}
+	
+	//일정등록
+	public boolean insertEvent(Map<String,String>map) {
+		getConn();
+		String sql = "insert into tbl_events (title, start_date, end_date)"
+				+ "   values(?,?,?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, map.get("title"));
+			psmt.setString(2, map.get("start"));
+			psmt.setString(3, map.get("end"));
+			
+			int r =psmt.executeUpdate(); //처리된건수 반환
+			if(r>0) {
+				return true; //정상처리
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disConnect();
+		}
+		return false; //비정상처리
+	}
+	
+	
 	//fullcalendar 데이터
 	public List<Map<String, Object>> calendarData(){
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		getConn();
+		String sql ="select title, start_date , end_date"
+				+ "                     from tbl_events";
 		
 		try {
-			psmt = conn.prepareStatement("select title, start_date as start, end_date as end from tbl_events");
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				Map<String, Object>map = new HashMap<>();
+				map.put("title",rs.getString("title"));
+				map.put("start",rs.getString("start_date"));
+				map.put("end",rs.getString("end_date"));
+				
+				list.add(map);
+			}
+			
 		}catch(SQLException e) {
 			
 		}finally {
